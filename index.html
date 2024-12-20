@@ -3,33 +3,80 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>You Da Best</title>
+  <title>Custom Popup</title>
   <style>
-    body {
-      font-family: Arial, sans-serif;
-      text-align: center;
-      margin-top: 50px;
+    /* Overlay styling */
+    .modal-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.5);
+      display: none;
+      justify-content: center;
+      align-items: center;
     }
-    button {
+
+    /* Modal content styling */
+    .modal-content {
+      background: white;
+      padding: 20px;
+      border-radius: 8px;
+      text-align: center;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+
+    /* Close button */
+    .close-btn {
+      margin-top: 10px;
+      background: #007BFF;
+      color: white;
+      border: none;
       padding: 10px 20px;
-      font-size: 16px;
+      border-radius: 5px;
       cursor: pointer;
     }
-    #message {
-      margin-top: 20px;
-      font-size: 18px;
-      color: #333;
+
+    .close-btn:hover {
+      background: #0056b3;
     }
   </style>
 </head>
 <body>
-  <h1>Click the Button</h1>
-  <button id="helloButton">Click Me!</button>
-  <div id="message"></div>
+  <button id="helloButton">Click Me</button>
+
+  <!-- Modal Structure -->
+  <div class="modal-overlay" id="modal">
+    <div class="modal-content">
+      <p id="modalMessage"></p>
+      <button class="close-btn" id="closeButton">Close</button>
+    </div>
+  </div>
 
   <script>
+    // Predefined messages
+    const messages = [
+        "Hello, world!",
+        "Welcome to my website!",
+        "Have a great day!", 
+        "You are the best"
+    ];
+
+    const modal = document.getElementById("modal");
+    const modalMessage = document.getElementById("modalMessage");
+    const closeButton = document.getElementById("closeButton");
+
+    // Show popup with random message
     document.getElementById("helloButton").addEventListener("click", function() {
-      document.getElementById("message").textContent = "Hello!";
+        const randomMessage = messages[Math.floor(Math.random() * messages.length)];
+        modalMessage.textContent = randomMessage;
+        modal.style.display = "flex";
+    });
+
+    // Close popup
+    closeButton.addEventListener("click", function() {
+        modal.style.display = "none";
     });
   </script>
 </body>
