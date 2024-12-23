@@ -42,6 +42,7 @@
       text-align: center;
       font-size: 60px;
       border: 2px solid black;
+      background-color: rgb(255, 179, 228);
     }
 
     .close-btn:hover {
@@ -51,15 +52,23 @@
       text-align: center;
       background-color: rgb(255, 179, 228);
       padding: 32px 64px;
+      border: 5px solid black;
     }
     #helloButton:hover{
       background: rgb(249, 233, 236);
+      
+    }
+    body { 
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
     }
   </style>
 </head>
 <body>
   <h1 id="firstlabel"> I have a message for you!</h1>
-  <button id="helloButton">Click Me</button>
+  <button id="helloButton">Click For Message</button>
 
   <!-- Modal Structure -->
   <div class="modal-overlay" id="modal">
@@ -102,7 +111,5 @@
   </script>
 </body>
 </html>
-
-
 
 
