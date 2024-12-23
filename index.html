@@ -1,72 +1,115 @@
-import React, { useState } from 'react';
-import { ChakraProvider, Button, Box, Flex, Text } from '@chakra-ui/react';
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>You're the best!!</title>
+  <style>
+    /* Overlay styling */
+    .modal-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.5);
+      display: none;
+      justify-content: center;
+      align-items: center;
+    }
 
-const App = () => {
-  const [isOpen, setIsOpen] = useState(false);
-  const [message, setMessage] = useState('');
+    /* Modal content styling */
+    .modal-content {
+      background: white;
+      padding: 20px;
+      border-radius: 8px;
+      text-align: center;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
 
-  const messages = [
-    "You are a doctor!!!!",
-    "You are so beautiful",
-    "You make me laugh all the time", 
-    "I love spending time with you", 
-    "I love your smile", 
-    "I love when you wear glasses!", 
-    "Thank you for always being there for me",
-    "Everyone that meets you loves you", 
-    "You so pretty",
-    "Waking up next to you is a great way to start the day"
-  ];
+    /* Close button */
+    .close-btn {
+      margin-top: 10px;
+      background: #007BFF;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 5px;
+      cursor: pointer;
+      
+    }
+    #firstlabel {
+      text-align: center;
+      font-size: 60px;
+      border: 2px solid black;
+      background-color: rgb(255, 179, 228);
+    }
 
-  const showMessage = () => {
-    const randomMessage = messages[Math.floor(Math.random() * messages.length)];
-    setMessage(randomMessage);
-    setIsOpen(true);
-  };
+    .close-btn:hover {
+      background: #0056b3;
+    }
+    #helloButton{
+      text-align: center;
+      background-color: rgb(255, 179, 228);
+      padding: 32px 64px;
+      border: 5px solid black;
+    }
+    #helloButton:hover{
+      background: rgb(249, 233, 236);
+      
+    }
+    body { 
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+  </style>
+</head>
+<body>
+  <h1 id="firstlabel"> I have a message for you!</h1>
+  <button id="helloButton">Click For Message</button>
 
-  const closeMessage = () => {
-    setIsOpen(false);
-  };
+  <!-- Modal Structure -->
+  <div class="modal-overlay" id="modal">
+    <div class="modal-content">
+      <p id="modalMessage"></p>
+      <button class="close-btn" id="closeButton">Close</button>
+    </div>
+  </div>
 
-  return (
-    <ChakraProvider>
-      <Flex flexDirection="column" alignItems="center" justifyContent="center" height="100vh" backgroundColor="pink.50">
-        <Text fontSize="3xl" fontWeight="bold" textAlign="center" mb={4}>
-          I have a message for you!
-        </Text>
-        <Button
-          id="helloButton"
-          onClick={showMessage}
-          bg="pink.300"
-          color="black"
-          size="lg"
-          _hover={{ bg: "pink.400" }}
-        >
-          Click For Message
-        </Button>
-        {isOpen && (
-          <Flex
-            position="fixed"
-            top={0}
-            left={0}
-            width="100%"
-            height="100%"
-            backgroundColor="rgba(0, 0, 0, 0.5)"
-            justifyContent="center"
-            alignItems="center"
-            zIndex={1000}
-          >
-            <Box bg="white" p={6} rounded="md" shadow="md" textAlign="center">
-              <Text mb={4}>{message}</Text>
-              <Button onClick={closeMessage} bg="blue.500" color="white" _hover={{ bg: "blue.600" }}>
-                Close
-              </Button>
-            </Box>
-          </Flex>
-        )}
-      </Flex>
-    </ChakraProvider>
-  );
-};
+  <script>
+    // Predefined messages
+    const messages = [
+        "You are a doctor!!!!",
+        "You are so beautiful",
+        "You make me laugh all the time", 
+        "I love spending time with you", 
+        "I love your smile", 
+        "I love when you wear glasses!", 
+        "Thank you for always being there for me",
+        "Everyone that meets you loves you", 
+        "You so pretty",
+        "Waking up next to you is a great way to start the day"
+    ];
 
-export default App;
+    const modal = document.getElementById("modal");
+    const modalMessage = document.getElementById("modalMessage");
+    const closeButton = document.getElementById("closeButton");
+
+    // Show popup with random message
+    document.getElementById("helloButton").addEventListener("click", function() {
+        const randomMessage = messages[Math.floor(Math.random() * messages.length)];
+        modalMessage.textContent = randomMessage;
+        modal.style.display = "flex";
+    });
+
+    // Close popup
+    closeButton.addEventListener("click", function() {
+        modal.style.display = "none";
+    });
+  </script>
+</body>
+</html>
+
+
